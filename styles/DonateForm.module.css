@@ -1,0 +1,146 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .formCard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .formTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .donateForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .formLabel {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4a5568;
+  }
+  
+  .formInput {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #111;
+    transition: all 0.2s;
+  }
+  
+  .formInput:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  .formTextarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .amountOptions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+  
+  .amountButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    font-weight: 600;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .amountButton:hover {
+    border-color: #4299e1;
+    color: #4299e1;
+  }
+  
+  .amountButtonActive {
+    background: #ebf8ff;
+    border-color: #4299e1;
+    color: #4299e1;
+  }
+  
+  .submitButton {
+    background: #3182ce;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  
+  .submitButton:hover {
+    background: #2c5282;
+  }
+  
+  .submitButton:disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+  }
+  
+  .securityNote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #718096;
+    margin-top: 1.5rem;
+  }
+  
+  .lockIcon {
+    width: 16px;
+    height: 16px;
+    fill: #718096;
+  }
+  
+  .errorAlert {
+    background: #fff5f5;
+    color: #c53030;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #fed7d7;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 640px) {
+    .formCard {
+      padding: 1.5rem;
+    }
+    
+    .amountOptions {
+      gap: 0.5rem;
+    }
+  }
