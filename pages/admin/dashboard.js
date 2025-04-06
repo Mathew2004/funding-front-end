@@ -1,21 +1,5 @@
 import { useEffect, useState } from "react";
 import { Heart, Search, ChevronDown, MoreHorizontal, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import axios from "axios";
 import useAdminAuth from "@/hooks/useAdminAuth";
 import { format } from "date-fns";
