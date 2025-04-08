@@ -21,10 +21,19 @@ export default function AdminDashboard() {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const res = await axios.get("/donate/payments");
-            setData(res.data.dashboardData);
-            setDonations(res.data.data);
-            setLoading(false);
+            try {
+                const res = await axios.get("/donate/payments", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+                    },
+                });
+                setData(res.data.dashboardData);
+                setDonations(res.data.data);
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            }
         };
         fetchData();
     }, []);
@@ -181,10 +190,10 @@ export default function AdminDashboard() {
                                                 <td className="px-4 py-2">
                                                     <span
                                                         className={`px-2 py-1 rounded-full text-xs font-medium ${donation.status.toLowerCase() === "paid"
-                                                                ? "bg-green-100 text-green-800"
-                                                                : donation.status.toLowerCase() === "pending"
-                                                                    ? "bg-yellow-100 text-yellow-800"
-                                                                    : "bg-red-100 text-red-800"
+                                                            ? "bg-green-100 text-green-800"
+                                                            : donation.status.toLowerCase() === "pending"
+                                                                ? "bg-yellow-100 text-yellow-800"
+                                                                : "bg-red-100 text-red-800"
                                                             }`}
                                                     >
                                                         {donation.status.toUpperCase()}
