@@ -28,7 +28,7 @@ function DonateForm() {
       window.location.href = response.data.url;
     } catch (err) {
         console.log(err);
-      setError(err.response?.data?.message || "Payment failed. Please try again.");
+      setError(err.response?.data?.error || "Payment failed. Please try again.");
       setIsSubmitting(false);
     }
   };
