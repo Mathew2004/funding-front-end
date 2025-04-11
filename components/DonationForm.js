@@ -33,7 +33,7 @@ function DonateForm() {
     }
   };
 
-  const amountOptions = [50, 100, 250, 500, 1000];
+  const amountOptions = [100, 250, 500, 1000];
 
   return (
     <div className={styles.formContainer}>

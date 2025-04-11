@@ -3,6 +3,7 @@ import { Heart, Search, ChevronDown, MoreHorizontal, Calendar } from "lucide-rea
 import axios from "axios";
 import useAdminAuth from "@/hooks/useAdminAuth";
 import { format } from "date-fns";
+import { Download } from "lucide-react";
 
 export default function AdminDashboard() {
     useAdminAuth();
@@ -58,6 +59,39 @@ export default function AdminDashboard() {
         return matchesSearch && matchesStatus && matchesDate;
     });
 
+    const handleExportCSV = () => {
+        if (!filteredDonations.length) return;
+
+        const headers = ["Donor", "Amount", "Phone", "Message", "Date", "Status"];
+        const csvRows = [
+            headers.join(","),
+
+            ...filteredDonations.map((d) => {
+               const phoneText = `'${d.phone}`;
+                const dateText = `'${format(new Date(d.date), "yyyy-MM-dd HH:mm:ss")}`;
+
+                return [
+                    `"${d.name || ""}"`,
+                    d.amount,                     
+                    `"${phoneText || ""}"`,
+                    `"${(d.message || "").replace(/"/g, '""')}"`,
+                    `"${dateText}"`,
+                    d.status
+                ].join(",");
+            })
+        ];
+
+        const blob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = Object.assign(document.createElement("a"), {
+            href: url,
+            download: `donations_${Date.now()}.csv`
+        });
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+
     return (
         <div className="min-h-screen bg-background">
             <nav className="border-b">
@@ -81,19 +115,22 @@ export default function AdminDashboard() {
                         <h3 className="text-lg font-semibold mb-2">Donors</h3>
                         <p className="text-3xl font-bold">{data.donors}</p>
                     </div>
-                    {/* <div className="bg-card p-6 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">Success Rate</h3>
-                        <p className="text-3xl font-bold">80%</p>
-                    </div>
-                    <div className="bg-card p-6 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">Active Campaigns</h3>
-                        <p className="text-3xl font-bold">3</p>
-                    </div> */}
                 </div>
 
                 <div className="bg-card rounded-lg shadow">
                     <div className="p-6 border-b">
                         <h2 className="text-2xl font-semibold">Recent Donations</h2>
+                    </div>
+                    <div className="p-6 border-b flex items-center justify-between">
+                        <h2 className="text-2xl font-semibold">Recent Donations</h2>
+
+                        <button
+                            onClick={handleExportCSV}
+                            className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50 active:scale-95 transition"
+                        >
+                            <Download className="h-4 w-4" />
+                            Export CSV
+                        </button>
                     </div>
 
                     {/* Search + Filters */}
