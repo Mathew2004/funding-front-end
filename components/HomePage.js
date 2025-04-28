@@ -72,9 +72,9 @@ export default function HomePage() {
                             <div className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6 shadow-lg">
                                 <div className="flex items-center gap-3 mb-4">
                                     <Users className="h-6 w-6 text-green-500" />
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Donors</h3>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Total Donors</h3>
                                 </div>
-                                <p className="text-3xl font-bold text-gray-900 dark:text-white">Tk.{dashboardData.donors}</p>
+                                <p className="text-3xl font-bold text-gray-900 dark:text-white">{dashboardData.donors}</p>
                             </div>
 
                             {/* Today's Donations Card */}
